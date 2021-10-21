@@ -20,6 +20,9 @@ public abstract class AbstractMessenger<T>
     this.config = config;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @SuppressWarnings("unchecked")
   @Override
   public <E> void send(E entity, String path, Object... replacements) {
@@ -32,6 +35,9 @@ public abstract class AbstractMessenger<T>
     sender.send(entity, result);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @SuppressWarnings("unchecked")
   @Override
   public <E> void sendMany(E entity, String path, Object... replacements) {

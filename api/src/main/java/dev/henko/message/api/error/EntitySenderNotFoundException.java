@@ -1,5 +1,9 @@
 package dev.henko.message.api.error;
 
+/**
+ * An exception that can be thrown when sends
+ * a message to entity.
+ */
 public class EntitySenderNotFoundException
   extends RuntimeException {
 
