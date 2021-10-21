@@ -1,0 +1,5 @@
+rootProject.name = 'message'
+
+['api', 'bukkit', 'bukkit-adventure'].forEach {
+  include it
+}

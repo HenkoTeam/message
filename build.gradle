@@ -1,0 +1,38 @@
+plugins {
+    id 'maven-publish'
+}
+//        compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+subprojects {
+    apply plugin: 'maven-publish'
+    apply plugin: 'java-library'
+
+    group 'dev.henko'
+    version '0.1.0-SNAPSHOT'
+
+    compileJava {
+        options.compilerArgs << "-parameters"
+        sourceCompatibility = 8
+        targetCompatibility = 8
+    }
+
+    publishing {
+//    For install the project into ur .m2
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url 'https://repo.codemc.io/repository/nms/' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/'}
+        maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'}
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.jetbrains:annotations:16.0.2'
+    }
+}
