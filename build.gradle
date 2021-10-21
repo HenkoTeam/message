@@ -1,7 +1,7 @@
 plugins {
     id 'maven-publish'
 }
-//        compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+
 subprojects {
     apply plugin: 'maven-publish'
     apply plugin: 'java-library'

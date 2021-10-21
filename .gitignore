@@ -22,3 +22,8 @@
 .gradle/checksums/sha1-checksums.bin
 .gradle/configuration-cache/gc.properties
 .gradle/vcs-1/gc.properties
+.gradle/6.8/javaCompile/taskHistory.bin
+.gradle/6.8/javaCompile/javaCompile.lock
+.gradle/6.8/javaCompile/jarAnalysis.bin
+.gradle/6.8/javaCompile/classAnalysis.bin
+.gradle/6.8/fileHashes/resourceHashesCache.bin

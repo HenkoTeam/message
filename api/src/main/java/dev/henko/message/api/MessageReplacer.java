@@ -14,10 +14,7 @@ public interface MessageReplacer<T> {
     if(replacements.length % 2 != 0) {
       return message;
     }
-    message.replaceAll(s -> {
-      replace(s, replacements);
-      return s;
-    });
+    message.replaceAll(s -> replace(s, replacements));
 
     return message;
   }
