@@ -1,6 +1,8 @@
 rootProject.name = 'message'
 
-['api', 'bukkit', 'bukkit-adventure'].forEach {
+['api', 'bukkit', 'adventure',
+'bukkit-adventure'].forEach {
   include it
   findProject(":${it}")?.name = "message-$it"
   }
+
