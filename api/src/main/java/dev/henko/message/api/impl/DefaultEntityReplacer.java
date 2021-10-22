@@ -39,13 +39,14 @@ public class DefaultEntityReplacer
         .matcher(message);
 
       while(matcher.find()) {
+        String group = matcher.group();
         String placeholder = StringPlaceholderObtainer
-          .from(matcher.group(), placeholderHolder.getPrefix());
+          .from(group, placeholderHolder.getPrefix());
 
         Object o = placeholderHolder.replace(entity, placeholder);
 
         if(o != null) {
-          message = matcher.replaceAll(o.toString());
+          message = message.replace(group, o.toString());
         }
       }
     }

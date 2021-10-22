@@ -45,6 +45,7 @@ public interface Messenger<T> {
   @NotNull
   T getReplacing(String path, Object... replacements);
 
+  @NotNull
   T get(String path, Object... entities);
 
   /**
@@ -57,6 +58,7 @@ public interface Messenger<T> {
   @NotNull
   List<T> getManyReplacing(String path, Object... replacements);
 
+  @NotNull
   List<T> getMany(String path, Object... entities);
 
   /**

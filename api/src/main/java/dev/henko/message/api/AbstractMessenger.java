@@ -32,7 +32,7 @@ public abstract class AbstractMessenger<T>
   }
 
   @Override
-  public T get(String path, Object... entities) {
+  public @NotNull T get(String path, Object... entities) {
     return internalGet(path, entityReplacer, entities);
   }
 
@@ -46,7 +46,7 @@ public abstract class AbstractMessenger<T>
   }
 
   @Override
-  public List<T> getMany(String path, Object... entities) {
+  public @NotNull List<T> getMany(String path, Object... entities) {
     return internalGetMany(path, entityReplacer, entities);
   }
 

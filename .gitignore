@@ -55,3 +55,4 @@
 .gradle/7.0/executionHistory/executionHistory.lock
 .gradle/7.0/executionHistory/executionHistory.bin
 .idea/workspace.xml
+.idea/modules/example/message.example.test.iml
