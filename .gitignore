@@ -44,3 +44,14 @@
 .gradle/7.0/fileChanges/last-build.bin
 .gradle/7.0/dependencies-accessors/gc.properties
 .gradle/7.0/dependencies-accessors/dependencies-accessors.lock
+.gradle/checksums/sha512-checksums.bin
+.gradle/checksums/sha256-checksums.bin
+.gradle/7.0/javaCompile/taskHistory.bin
+.gradle/7.0/javaCompile/javaCompile.lock
+.gradle/7.0/javaCompile/jarAnalysis.bin
+.gradle/7.0/javaCompile/classAnalysis.bin
+.gradle/7.0/fileHashes/resourceHashesCache.bin
+.gradle/7.0/fileHashes/fileHashes.bin
+.gradle/7.0/executionHistory/executionHistory.lock
+.gradle/7.0/executionHistory/executionHistory.bin
+.idea/workspace.xml
