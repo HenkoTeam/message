@@ -3,7 +3,6 @@ package dev.henko.message.bukkit;
 import dev.henko.message.api.Messenger;
 import dev.henko.message.api.MessengerConfig;
 import dev.henko.message.api.MessengerProvider;
-import dev.henko.message.api.impl.MessengerConfigImpl;
 import dev.henko.message.adventure.messenger.AdventureMessenger;
 import dev.henko.message.bukkit.source.YamlSource;
 import net.kyori.adventure.audience.Audience;
@@ -37,7 +36,7 @@ public class AdventureMessengerProvider
 
   @Override
   public Messenger<Component> get() {
-    MessengerConfig<Component> config = new MessengerConfigImpl<>();
+    MessengerConfig<Component> config = new MessengerConfig<>();
     config.setSource(new YamlSource(plugin, sourceName))
       .addEntity(CommandSender.class, (entity, message) -> {
         Audience audience;

@@ -3,7 +3,6 @@ package dev.henko.message.bukkit;
 import dev.henko.message.api.Messenger;
 import dev.henko.message.api.MessengerConfig;
 import dev.henko.message.api.MessengerProvider;
-import dev.henko.message.api.impl.MessengerConfigImpl;
 import dev.henko.message.api.impl.DefaultMessenger;
 import dev.henko.message.bukkit.source.YamlSource;
 import org.bukkit.ChatColor;
@@ -27,7 +26,7 @@ public class BukkitMessengerProvider
 
   @Override
   public Messenger<String> get() {
-    MessengerConfig<String> config = new MessengerConfigImpl<>();
+    MessengerConfig<String> config = new MessengerConfig<>();
     config.setSource(new YamlSource(plugin, sourceName))
       .addInterceptor(message -> ChatColor.translateAlternateColorCodes('&', message))
       .addEntity(CommandSender.class, CommandSender::sendMessage)

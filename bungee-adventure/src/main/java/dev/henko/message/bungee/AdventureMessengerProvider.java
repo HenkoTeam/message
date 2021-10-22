@@ -4,7 +4,6 @@ import dev.henko.message.adventure.messenger.AdventureMessenger;
 import dev.henko.message.api.Messenger;
 import dev.henko.message.api.MessengerConfig;
 import dev.henko.message.api.MessengerProvider;
-import dev.henko.message.api.impl.MessengerConfigImpl;
 import dev.henko.message.bungee.source.YamlSource;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
@@ -37,7 +36,7 @@ public class AdventureMessengerProvider
 
   @Override
   public Messenger<Component> get() {
-    MessengerConfig<Component> config = new MessengerConfigImpl<>();
+    MessengerConfig<Component> config = new MessengerConfig<>();
     config.setSource(new YamlSource(plugin, sourceName))
       .addEntity(CommandSender.class, (entity, message) -> {
         Audience audience;

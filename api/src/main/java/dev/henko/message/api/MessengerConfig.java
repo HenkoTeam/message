@@ -5,7 +5,10 @@ import dev.henko.message.api.source.Source;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Represents the configuration that will be used
@@ -13,16 +16,27 @@ import java.util.Collection;
  *
  * @param <T> The message type
  */
-public interface MessengerConfig<T> {
+public final class MessengerConfig<T> {
+
+  private Source source;
+  private final List<MessageInterceptor<T>> interceptors;
+  private final Map<Class<?>, EntitySender<?,T>> entitySenders;
+
+  public MessengerConfig() {
+    this.interceptors = new LinkedList<>();
+    this.entitySenders = new ConcurrentHashMap<>();
+  }
 
   /**
    * Set the source of the messenger config
    *
-   * @param resource Source to set
+   * @param source Source to set
    * @return The current messenger config
    */
-  @NotNull
-  MessengerConfig<T> setSource(Source resource);
+  public @NotNull MessengerConfig<T> setSource(Source source) {
+    this.source = source;
+    return this;
+  }
 
   /**
    * Add a interceptor for the messages
@@ -30,8 +44,10 @@ public interface MessengerConfig<T> {
    * @param interceptor Interceptor to be added
    * @return The current messenger config
    */
-  @NotNull
-  MessengerConfig<T> addInterceptor(MessageInterceptor<T> interceptor);
+  public @NotNull MessengerConfig<T> addInterceptor(MessageInterceptor<T> interceptor) {
+    interceptors.add(interceptor);
+    return this;
+  }
 
   /**
    * Add a entity sender for a specific entity
@@ -40,24 +56,32 @@ public interface MessengerConfig<T> {
    * @param sender Entity sender to be added
    * @return The current messenger config
    */
-  @NotNull
-  <E> MessengerConfig<T> addEntity(Class<E> entityType, EntitySender<E, T> sender);
+  public @NotNull <E> MessengerConfig<T> addEntity(
+    Class<E> entityType,
+    EntitySender<E, T> sender
+  ) {
+    entitySenders.put(entityType, sender);
+    return this;
+  }
 
   /**
    * Get the messenger config source
    *
    * @return The source
    */
-  @NotNull
-  Source getSource();
+  public @NotNull Source getSource() {
+    return source;
+  }
+
 
   /**
    * Get all interceptors
    *
    * @return The interceptors
    */
-  @NotNull
-  Collection<MessageInterceptor<T>> getInterceptors();
+  public @NotNull List<MessageInterceptor<T>> getInterceptors() {
+    return interceptors;
+  }
 
   /**
    * Get a specific entity sender
@@ -65,7 +89,8 @@ public interface MessengerConfig<T> {
    * @param type Entity type to get
    * @return The entity sender
    */
-  @Nullable
-  EntitySender<?, T> getEntitySender(Class<?> type);
+  public @Nullable EntitySender<?,T> getEntitySender(Class<?> type) {
+    return entitySenders.get(type);
+  }
 
 }
