@@ -39,3 +39,8 @@
 .idea/modules/bungee/message.bungee.test.iml
 .idea/modules/bungee.iml
 .idea/modules/bungee-adventure.iml
+.gradle/7.0/gc.properties
+.gradle/7.0/fileHashes/fileHashes.lock
+.gradle/7.0/fileChanges/last-build.bin
+.gradle/7.0/dependencies-accessors/gc.properties
+.gradle/7.0/dependencies-accessors/dependencies-accessors.lock
