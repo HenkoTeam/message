@@ -19,7 +19,9 @@ public interface Messenger<T> {
    * @param replacements Placeholders that will be applied
    * @param <E> Entity type
    */
-  <E> void send(E entity, String path, Object... replacements);
+  <E> void sendReplacing(E entity, String path, Object... replacements);
+
+  <E> void send(E entity, String path, Object... entities);
 
   /**
    * Sends a message list to entity
@@ -29,7 +31,9 @@ public interface Messenger<T> {
    * @param replacements Placeholders that will be applied
    * @param <E> Entity type
    */
-  <E> void sendMany(E entity, String path, Object... replacements);
+  <E> void sendManyReplacing(E entity, String path, Object... replacements);
+
+  <E> void sendMany(E entity, String path, Object... entities);
 
   /**
    * Get a message from the source
@@ -39,7 +43,9 @@ public interface Messenger<T> {
    * @return The message
    */
   @NotNull
-  T get(String path, Object... replacements);
+  T getReplacing(String path, Object... replacements);
+
+  T get(String path, Object... entities);
 
   /**
    * Gets a message list from the source
@@ -49,7 +55,9 @@ public interface Messenger<T> {
    * @return The message list
    */
   @NotNull
-  List<T> getMany(String path, Object... replacements);
+  List<T> getManyReplacing(String path, Object... replacements);
+
+  List<T> getMany(String path, Object... entities);
 
   /**
    * Gets the messenger config

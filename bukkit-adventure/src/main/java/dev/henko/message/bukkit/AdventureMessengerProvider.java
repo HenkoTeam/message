@@ -37,8 +37,10 @@ public class AdventureMessengerProvider
   @Override
   public Messenger<Component> get() {
     MessengerConfig<Component> config = new MessengerConfig<>();
-    config.setSource(new YamlSource(plugin, sourceName))
-      .addEntity(CommandSender.class, (entity, message) -> {
+    config.setSource(new YamlSource(plugin, sourceName));
+
+    config.addEntity(CommandSender.class)
+      .setSender((entity, message) -> {
         Audience audience;
         if(entity instanceof Player) {
           audience = bukkitAudiences.player((Player) entity);
@@ -46,13 +48,16 @@ public class AdventureMessengerProvider
           audience = bukkitAudiences.sender(entity);
         }
         audience.sendMessage(message);
+      });
 
-      })
-      .addEntity(Player.class, (entity, message) -> {
+    config.addEntity(Player.class)
+      .setSender((entity, message) -> {
         Audience audience = bukkitAudiences.player(entity);
         audience.sendMessage(message);
-      })
-      .addEntity(Audience.class, (Audience::sendMessage));
+      });
+
+    config.addEntity(Audience.class)
+      .setSender(Audience::sendMessage);
 
     return new AdventureMessenger(config, miniMessage);
   }

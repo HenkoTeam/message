@@ -37,8 +37,10 @@ public class AdventureMessengerProvider
   @Override
   public Messenger<Component> get() {
     MessengerConfig<Component> config = new MessengerConfig<>();
-    config.setSource(new YamlSource(plugin, sourceName))
-      .addEntity(CommandSender.class, (entity, message) -> {
+    config.setSource(new YamlSource(plugin, sourceName));
+
+    config.addEntity(CommandSender.class)
+      .setSender((entity, message) -> {
         Audience audience;
         if(entity instanceof ProxiedPlayer) {
           audience = bungeeAudiences.player((ProxiedPlayer) entity);
@@ -46,13 +48,14 @@ public class AdventureMessengerProvider
           audience = bungeeAudiences.sender(entity);
         }
         audience.sendMessage(message);
-
-      })
-      .addEntity(ProxiedPlayer.class, (entity, message) -> {
+      });
+    config.addEntity(ProxiedPlayer.class)
+      .setSender((entity, message) -> {
         Audience audience = bungeeAudiences.player(entity);
         audience.sendMessage(message);
-      })
-      .addEntity(Audience.class, (Audience::sendMessage));
+      });
+    config.addEntity(Audience.class)
+      .setSender(Audience::sendMessage);
 
     return new AdventureMessenger(config, miniMessage);
   }

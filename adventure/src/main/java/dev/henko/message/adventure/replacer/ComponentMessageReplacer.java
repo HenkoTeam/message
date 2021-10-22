@@ -1,6 +1,6 @@
 package dev.henko.message.adventure.replacer;
 
-import dev.henko.message.api.MessageReplacer;
+import dev.henko.message.api.replacer.MessageReplacer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
 import org.jetbrains.annotations.NotNull;

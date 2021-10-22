@@ -1,10 +1,11 @@
-package dev.henko.message.api;
+package dev.henko.message.api.replacer;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public interface MessageReplacer<T> {
+public interface MessageReplacer<T>
+  extends Replacer<T>{
 
   /**
    * Replace placeholders in a message

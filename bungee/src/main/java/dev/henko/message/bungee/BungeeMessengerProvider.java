@@ -29,13 +29,13 @@ public class BungeeMessengerProvider
   public Messenger<String> get() {
     MessengerConfig<String> config = new MessengerConfig<>();
     config.setSource(new YamlSource(plugin, sourceName))
-      .addInterceptor(message -> ChatColor.translateAlternateColorCodes('&', message))
-      .addEntity(CommandSender.class, (entity, message) ->
-        entity.sendMessage(TextComponent.fromLegacyText(message))
-      )
-      .addEntity(ProxiedPlayer.class, (entity, message) ->
-          entity.sendMessage(TextComponent.fromLegacyText(message))
-      );
+      .addInterceptor(message -> ChatColor.translateAlternateColorCodes('&', message));
+
+    config.addEntity(CommandSender.class)
+      .setSender((entity, message) -> entity.sendMessage(TextComponent.fromLegacyText(message)));
+    config.addEntity(ProxiedPlayer.class)
+      .setSender((entity, message) -> entity.sendMessage(TextComponent.fromLegacyText(message)));
+
     return new DefaultMessenger(config);
   }
 }

@@ -28,9 +28,14 @@ public class BukkitMessengerProvider
   public Messenger<String> get() {
     MessengerConfig<String> config = new MessengerConfig<>();
     config.setSource(new YamlSource(plugin, sourceName))
-      .addInterceptor(message -> ChatColor.translateAlternateColorCodes('&', message))
-      .addEntity(CommandSender.class, CommandSender::sendMessage)
-      .addEntity(Player.class, Player::sendMessage);
+      .addInterceptor(message -> ChatColor.translateAlternateColorCodes('&', message));
+
+    config.addEntity(Player.class)
+      .setSender(Player::sendMessage);
+
+    config.addEntity(CommandSender.class)
+      .setSender(CommandSender::sendMessage);
+
     return new DefaultMessenger(config);
   }
 }

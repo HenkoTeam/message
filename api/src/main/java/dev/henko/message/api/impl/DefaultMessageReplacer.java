@@ -1,6 +1,6 @@
 package dev.henko.message.api.impl;
 
-import dev.henko.message.api.MessageReplacer;
+import dev.henko.message.api.replacer.MessageReplacer;
 import org.jetbrains.annotations.NotNull;
 
 

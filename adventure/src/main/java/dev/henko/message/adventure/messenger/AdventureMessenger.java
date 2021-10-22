@@ -1,7 +1,9 @@
 package dev.henko.message.adventure.messenger;
 
+import dev.henko.message.adventure.replacer.ComponentEntityReplacer;
 import dev.henko.message.api.AbstractMessenger;
 import dev.henko.message.api.MessengerConfig;
+import dev.henko.message.api.replacer.Replacer;
 import dev.henko.message.api.source.Source;
 import dev.henko.message.adventure.replacer.ComponentMessageReplacer;
 import net.kyori.adventure.text.Component;
@@ -21,7 +23,7 @@ public class AdventureMessenger
     MessengerConfig<Component> config,
     MiniMessage miniMessage
   ) {
-    super(new ComponentMessageReplacer(), config);
+    super(new ComponentEntityReplacer(config), new ComponentMessageReplacer(), config);
     this.miniMessage = miniMessage;
   }
 
@@ -31,22 +33,32 @@ public class AdventureMessenger
     this(config, MiniMessage.get());
   }
 
+
   @Override
-  public @NotNull Component get(String path, Object... replacements) {
+  protected @NotNull Component internalGet(
+    String path,
+    Replacer<Component> replacer,
+    Object... objects
+  ) {
     Source source = config.getSource();
     String legacyResult = source.getString(path);
     if(legacyResult == null) {
       return Component.text(path);
     }
     Component result = miniMessage.parse(path);
-    Component finalResult = replacer.replace(result, replacements);
+    Component finalResult = replacer.replace(result, objects);
     config.getInterceptors()
       .forEach(interceptor -> interceptor.intercept(finalResult));
     return finalResult;
   }
 
+
   @Override
-  public @NotNull List<Component> getMany(String path, Object... replacements) {
+  protected @NotNull List<Component> internalGetMany(
+    String path,
+    Replacer<Component> replacer,
+    Object... objects
+  ) {
     Source source = config.getSource();
     List<String> legacyResult = source.getStringList(path);
     if(legacyResult == null || legacyResult.isEmpty()) {
@@ -59,7 +71,7 @@ public class AdventureMessenger
     });
     config.getInterceptors()
       .forEach(interceptor -> interceptor.intercept(result));
-    replacer.replace(result, replacements);
+    replacer.replace(result, objects);
     return result;
   }
 }

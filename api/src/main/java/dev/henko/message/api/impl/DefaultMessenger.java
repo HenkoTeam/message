@@ -2,6 +2,7 @@ package dev.henko.message.api.impl;
 
 import dev.henko.message.api.AbstractMessenger;
 import dev.henko.message.api.MessengerConfig;
+import dev.henko.message.api.replacer.Replacer;
 import dev.henko.message.api.source.Source;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,24 +13,32 @@ public class DefaultMessenger
   extends AbstractMessenger<String> {
 
   public DefaultMessenger(MessengerConfig<String> config) {
-    super(new DefaultMessageReplacer(), config);
+    super(new DefaultEntityReplacer(config), new DefaultMessageReplacer(), config);
   }
 
   @Override
-  public @NotNull String get(String path, Object... replacements) {
+  protected @NotNull String internalGet(
+    String path,
+    Replacer<String> replacer,
+    Object... objects
+  ) {
     Source source = config.getSource();
     String result = source.getString(path);
     if(result == null) {
       return path;
     }
-    String finalResult = replacer.replace(result, replacements);
+    String finalResult = replacer.replace(result, objects);
     config.getInterceptors()
       .forEach(interceptor -> interceptor.intercept(finalResult));
     return finalResult;
   }
 
   @Override
-  public @NotNull List<String> getMany(String path, Object... replacements) {
+  protected @NotNull List<String> internalGetMany(
+    String path,
+    Replacer<String> replacer,
+    Object... objects
+  ) {
     Source source = config.getSource();
     List<String> result = source.getStringList(path);
     if(result == null || result.isEmpty()) {
@@ -37,8 +46,9 @@ public class DefaultMessenger
     }
     config.getInterceptors()
       .forEach(interceptor -> interceptor.intercept(result));
-    replacer.replace(result, replacements);
+    replacer.replace(result, objects);
     return result;
   }
+
 
 }
