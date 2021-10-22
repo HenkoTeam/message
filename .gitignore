@@ -36,3 +36,5 @@
 .idea/modules/bukkit/message.bukkit.test.iml
 .idea/modules/bukkit-adventure/message.bukkit-adventure.test.iml
 .idea/modules/api/message.api.test.iml
+.idea/modules/bungee/message.bungee.test.iml
+.idea/modules/bungee.iml

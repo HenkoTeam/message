@@ -5,7 +5,6 @@ import dev.henko.message.api.MessengerConfig;
 import dev.henko.message.api.source.Source;
 import dev.henko.message.adventure.replacer.ComponentMessageReplacer;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.jetbrains.annotations.NotNull;
 
@@ -39,7 +38,7 @@ public class AdventureMessenger
     if(legacyResult == null) {
       return Component.text(path);
     }
-    Component result = (TextComponent) miniMessage.parse(path);
+    Component result = miniMessage.parse(path);
     Component finalResult = replacer.replace(result, replacements);
     config.getInterceptors()
       .forEach(interceptor -> interceptor.intercept(finalResult));
@@ -56,7 +55,7 @@ public class AdventureMessenger
 
     List<Component> result = new ArrayList<>();
     legacyResult.forEach(r -> {
-      result.add((TextComponent) miniMessage.parse(r));
+      result.add(miniMessage.parse(r));
     });
     config.getInterceptors()
       .forEach(interceptor -> interceptor.intercept(result));
