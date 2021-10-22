@@ -1,4 +1,6 @@
 dependencies {
     api project(':message-bukkit');
     api project(':message-adventure');
+    api 'net.kyori:adventure-platform-bukkit:4.0.0'
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 }

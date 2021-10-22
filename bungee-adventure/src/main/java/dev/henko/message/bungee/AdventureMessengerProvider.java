@@ -1,37 +1,37 @@
-package dev.henko.message.bukkit;
+package dev.henko.message.bungee;
 
+import dev.henko.message.adventure.messenger.AdventureMessenger;
 import dev.henko.message.api.Messenger;
 import dev.henko.message.api.MessengerConfig;
 import dev.henko.message.api.MessengerProvider;
 import dev.henko.message.api.impl.MessengerConfigImpl;
-import dev.henko.message.adventure.messenger.AdventureMessenger;
-import dev.henko.message.bukkit.source.YamlSource;
+import dev.henko.message.bungee.source.YamlSource;
 import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.plugin.Plugin;
 
 public class AdventureMessengerProvider
   implements MessengerProvider<Component> {
 
   private final Plugin plugin;
   private final String sourceName;
-  private final BukkitAudiences bukkitAudiences;
+  private final BungeeAudiences bungeeAudiences;
   private final MiniMessage miniMessage;
 
   public AdventureMessengerProvider(
     Plugin plugin,
     String sourceName,
-    BukkitAudiences bukkitAudiences,
+    BungeeAudiences bungeeAudiences,
     MiniMessage miniMessage
 
   ) {
     this.plugin = plugin;
     this.sourceName = sourceName;
-    this.bukkitAudiences = bukkitAudiences;
+    this.bungeeAudiences = bungeeAudiences;
     this.miniMessage = miniMessage;
   }
 
@@ -41,16 +41,16 @@ public class AdventureMessengerProvider
     config.setSource(new YamlSource(plugin, sourceName))
       .addEntity(CommandSender.class, (entity, message) -> {
         Audience audience;
-        if(entity instanceof Player) {
-          audience = bukkitAudiences.player((Player) entity);
+        if(entity instanceof ProxiedPlayer) {
+          audience = bungeeAudiences.player((ProxiedPlayer) entity);
         } else {
-          audience = bukkitAudiences.sender(entity);
+          audience = bungeeAudiences.sender(entity);
         }
         audience.sendMessage(message);
 
       })
-      .addEntity(Player.class, (entity, message) -> {
-        Audience audience = bukkitAudiences.player(entity);
+      .addEntity(ProxiedPlayer.class, (entity, message) -> {
+        Audience audience = bungeeAudiences.player(entity);
         audience.sendMessage(message);
       })
       .addEntity(Audience.class, (Audience::sendMessage));

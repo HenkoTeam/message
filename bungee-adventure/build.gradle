@@ -1,0 +1,6 @@
+dependencies {
+    api project(':message-bungee');
+    api project(':message-adventure');
+    api 'net.kyori:adventure-platform-bungeecord:4.0.0'
+    compileOnly 'net.md-5:bungeecord-api:1.17-R0.1-SNAPSHOT'
+}
