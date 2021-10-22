@@ -32,7 +32,7 @@ repositories {
 #### Maven (pom.xml)
 ```xml
 <dependency>
-    <groupId>dev.henko.message</groupId>
+    <groupId>com.github.HenkoTeam.message</groupId>
     <artifactId>api</artifactId>
     <version>VERSION</version>
 </dependency>
@@ -42,13 +42,13 @@ repositories {
 **For Groovy DSL:** (build.gradle)
 ```groovy
 dependencies {
-  implementation 'dev.henko.message:api:VERSION'
+  implementation 'com.github.HenkoTeam.message:api:VERSION'
 }
 ```
 **For Kotlin DSL:** (build.gradle.kts)
 ```kotlin
 dependencies {
-  implementation("dev.henko.message:api:VERSION")
+  implementation("com.github.HenkoTeam.message:api:VERSION")
 }
 ```
 
