@@ -1,10 +1,12 @@
 plugins {
     id 'maven-publish'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
 subprojects {
     apply plugin: 'maven-publish'
     apply plugin: 'java-library'
+    apply plugin: 'com.github.johnrengelman.shadow'
 
     group 'dev.henko'
     version '0.1.0-SNAPSHOT'

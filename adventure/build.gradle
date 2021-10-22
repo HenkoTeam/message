@@ -1,5 +1,5 @@
 dependencies {
     api project(':message-api');
-    api 'net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT'
-    api 'net.kyori:adventure-api:4.9.2'
+    compileOnly 'net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT'
+    compileOnly 'net.kyori:adventure-api:4.9.2'
 }
