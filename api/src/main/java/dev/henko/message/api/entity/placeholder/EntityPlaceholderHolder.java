@@ -5,15 +5,19 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.regex.Pattern;
 
+/**
+ * Contains the entity placeholder properties
+ *
+ * @param <E>
+ */
 public final class EntityPlaceholderHolder<E> {
 
+  // Common regex for entity placeholders
   private static final String PLACEHOLDER_REGEX = "%<prefix>(.+?)%";
-
 
   private final String prefix;
   private final Pattern pattern;
   private final EntityPlaceholderProvider<E> provider;
-
 
   public EntityPlaceholderHolder(
     String prefix,
@@ -26,19 +30,37 @@ public final class EntityPlaceholderHolder<E> {
     this.provider = provider;
   }
 
+  /**
+   * @see EntityPlaceholderProvider#replace(Object, String);
+   */
   @SuppressWarnings("unchecked")
-  public @Nullable Object replace(Object o, String placeholder) {
-    return getProvider().replace((E) o, placeholder);
+  public @Nullable Object replace(Object entity, String placeholder) {
+    return getProvider().replace((E) entity, placeholder);
   }
 
+  /**
+   * Get the placeholders prefix
+   *
+   * @return The prefix
+   */
   public @NotNull String getPrefix() {
     return prefix;
   }
 
+  /**
+   * Get the pattern for the placeholders
+   *
+   * @return The pattern
+   */
   public @NotNull Pattern getPattern() {
     return pattern;
   }
 
+  /**
+   * Get the placeholder provider
+   *
+   * @return The placeholder provider
+   */
   public @NotNull EntityPlaceholderProvider<E> getProvider() {
     return provider;
   }

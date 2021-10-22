@@ -26,30 +26,48 @@ public abstract class AbstractMessenger<T>
     this.config = config;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public @NotNull T getReplacing(String path, Object... replacements) {
     return internalGet(path, messageReplacer, replacements);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public @NotNull T get(String path, Object... entities) {
     return internalGet(path, entityReplacer, entities);
   }
 
+  /**
+   * Common method to get a message changing the replacer
+   */
   protected abstract @NotNull T internalGet(
     String path, Replacer<T> replacer, Object... objects
   );
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public @NotNull List<T> getManyReplacing(String path, Object... replacements) {
     return internalGetMany(path, messageReplacer, replacements);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public @NotNull List<T> getMany(String path, Object... entities) {
     return internalGetMany(path, entityReplacer, entities);
   }
 
+  /**
+   * Common method to get many messages changing the replacer
+   */
   protected abstract @NotNull List<T> internalGetMany(
     String path, Replacer<T> replacer, Object... objects
   );
@@ -64,12 +82,18 @@ public abstract class AbstractMessenger<T>
     internalSend(entity, result);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public <E> void send(E entity, String path, Object... entities) {
     T result = get(path, entities);
     internalSend(entity, result);
   }
 
+  /**
+   * Common method to send a message
+   */
   private <E> void internalSend(E entity, T result) {
     EntitySender<E, T> sender = internalGetEntitySender(entity);
     sender.send(entity, result);
@@ -84,12 +108,17 @@ public abstract class AbstractMessenger<T>
     internalSendMany(entity, result);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public <E> void sendMany(E entity, String path, Object... entities) {
     List<T> result = getManyReplacing(path, entities);
     internalSendMany(entity, result);
   }
-
+  /**
+   * Common method to send many messages
+   */
   private <E> void internalSendMany(E entity, List<T> result) {
     EntitySender<E, T> sender = internalGetEntitySender(entity);
     result.forEach(r -> {
@@ -97,6 +126,9 @@ public abstract class AbstractMessenger<T>
     });
   }
 
+  /**
+   * Internal method to get a not null entity sender
+   */
   @SuppressWarnings("unchecked")
   private @NotNull <E> EntitySender<E,T> internalGetEntitySender(E entity) {
     Class<?> type = entity.getClass();
