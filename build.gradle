@@ -9,7 +9,7 @@ subprojects {
     apply plugin: 'com.github.johnrengelman.shadow'
 
     group 'dev.henko'
-    version '0.1.0-SNAPSHOT'
+    version '0.1.2-SNAPSHOT'
 
     compileJava {
         options.compilerArgs << "-parameters"
