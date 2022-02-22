@@ -1,6 +1,7 @@
 package dev.henko.message.api.impl;
 
 import dev.henko.message.api.AbstractMessenger;
+import dev.henko.message.api.MessageInterceptor;
 import dev.henko.message.api.MessengerConfig;
 import dev.henko.message.api.replacer.Replacer;
 import dev.henko.message.api.source.Source;
@@ -24,12 +25,13 @@ public class DefaultMessenger
   ) {
     Source source = config.getSource();
     String result = source.getString(path);
-    if(result == null) {
+    if (result == null) {
       return path;
     }
     String finalResult = replacer.replace(result, objects);
-    config.getInterceptors()
-      .forEach(interceptor -> interceptor.intercept(finalResult));
+    for (MessageInterceptor<String> interceptor : config.getInterceptors()) {
+      finalResult = interceptor.intercept(finalResult);
+    }
     return finalResult;
   }
 

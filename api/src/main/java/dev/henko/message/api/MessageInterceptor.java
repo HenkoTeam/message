@@ -15,7 +15,7 @@ public interface MessageInterceptor<T> {
    *
    * @param message Message to be intercepted
    */
-  void intercept(T message);
+  T intercept(T message);
 
   /**
    * Intercepts a message list before it is sent
