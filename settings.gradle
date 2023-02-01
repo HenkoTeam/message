@@ -1,8 +1,5 @@
 rootProject.name = 'message'
 
-['api', 'adventure', 'bukkit','bukkit-adventure',
- 'bungee', 'bungee-adventure', 'example'].forEach {
-  include it
-  findProject(":${it}")?.name = "message-$it"
-  }
+include 'core'
+findProject(":core")?.name = "message-core"
 

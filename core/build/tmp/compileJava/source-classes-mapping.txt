@@ -1,0 +1,28 @@
+dev/henko/message/api/format/MessageInterceptor.java
+ dev.henko.message.api.format.MessageInterceptor
+dev/henko/message/api/format/replacer/Replacer.java
+ dev.henko.message.api.format.replacer.Replacer
+dev/henko/message/api/entity/placeholder/PlaceholderExtractor.java
+ dev.henko.message.api.entity.placeholder.PlaceholderExtractor
+dev/henko/message/api/config/ConfigurationBuilder.java
+ dev.henko.message.api.config.ConfigurationBuilder
+dev/henko/message/api/entity/placeholder/EntityPlaceholder.java
+ dev.henko.message.api.entity.placeholder.EntityPlaceholder
+dev/henko/message/api/entity/EntityResolverBuilder.java
+ dev.henko.message.api.entity.EntityResolverBuilder
+dev/henko/message/api/entity/send/EntitySender.java
+ dev.henko.message.api.entity.send.EntitySender
+dev/henko/message/api/entity/EntityResolver.java
+ dev.henko.message.api.entity.EntityResolver
+dev/henko/message/api/MessageHandler.java
+ dev.henko.message.api.MessageHandler
+dev/henko/message/api/MessageHandlerImpl.java
+ dev.henko.message.api.MessageHandlerImpl
+dev/henko/message/api/format/replacer/EntityReplacer.java
+ dev.henko.message.api.format.replacer.EntityReplacer
+dev/henko/message/api/entity/placeholder/EntityPlaceholderProvider.java
+ dev.henko.message.api.entity.placeholder.EntityPlaceholderProvider
+dev/henko/message/api/format/replacer/StringReplacer.java
+ dev.henko.message.api.format.replacer.StringReplacer
+dev/henko/message/api/config/ConfigurationHandle.java
+ dev.henko.message.api.config.ConfigurationHandle

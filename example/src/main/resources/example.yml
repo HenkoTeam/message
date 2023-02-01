@@ -1,2 +1,0 @@
-example-entity: "Hello %user_name% your password is %user_password%"
-example-replacing: "Hello %name% your password is %password%"

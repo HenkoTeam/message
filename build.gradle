@@ -9,7 +9,7 @@ subprojects {
     apply plugin: 'com.github.johnrengelman.shadow'
 
     group 'dev.henko'
-    version '0.1.3-SNAPSHOT'
+    version '0.2.0-SNAPSHOT'
 
     compileJava {
         options.compilerArgs << "-parameters"
@@ -29,12 +29,6 @@ subprojects {
     repositories {
         mavenLocal()
         maven { url 'https://repo.codemc.io/repository/nms/' }
-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/'}
-        maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'}
         mavenCentral()
-    }
-
-    dependencies {
-        compileOnly 'org.jetbrains:annotations:16.0.2'
     }
 }

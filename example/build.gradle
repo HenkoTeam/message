@@ -1,4 +1,0 @@
-dependencies {
-    api project(":message-api")
-    api 'org.yaml:snakeyaml:1.29'
-}
