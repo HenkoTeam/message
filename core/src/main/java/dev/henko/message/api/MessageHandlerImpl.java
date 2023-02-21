@@ -147,13 +147,8 @@ public class MessageHandlerImpl
     return result;
   }
 
-  /**
-   * Gets the message handler config
-   *
-   * @return Messenger config
-   */
-  @NotNull
-  public ConfigurationHandle getConfig() {
+  @Override
+  public @NotNull ConfigurationHandle getConfig() {
     return config;
   }
 }

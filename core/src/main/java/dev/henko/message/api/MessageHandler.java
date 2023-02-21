@@ -87,4 +87,10 @@ public interface MessageHandler {
    */
   @NotNull List<String> getMany(String path, Object... entities);
 
+  /**
+   * Gets the message handler config
+   *
+   * @return Messenger config
+   */
+  @NotNull ConfigurationHandle getConfig();
 }
